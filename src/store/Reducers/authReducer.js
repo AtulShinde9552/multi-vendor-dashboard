@@ -30,9 +30,18 @@ export const seller_login = createAsyncThunk(
 )
 export const logout = createAsyncThunk(
     'auth/logout',
-    async ({ navigate, role }, { rejectWithValue, fulfillWithValue }) => {
+    async ({ navigate, role }, { rejectWithValue, fulfillWithValue, getState}) => {
+
+        const {token} = getState().auth
+
+        const config ={
+            headers:{
+                'Authorization': `Bearer ${token}`,
+            }
+        }
+
         try {
-            const { data } = await axios.get(`${base_url}/api/logout`)
+            const { data } = await axios.get(`${base_url}/api/logout`, config)
             localStorage.removeItem('accessToken')
             if (role === 'admin') {
                 navigate('/admin/login')
