@@ -4,9 +4,18 @@ import { base_url } from '../../utils/config'
 
 export const add_product = createAsyncThunk(
     'product/add_product',
-    async (product, { rejectWithValue, fulfillWithValue }) => {
+    async (product, { rejectWithValue,getState, fulfillWithValue }) => {
+
+        const {token} = getState().auth
+
+        const config ={
+            headers:{
+                'Authorization': `Bearer ${token}`,
+            }
+        }
+
         try {
-            const { data } = await axios.post(`${base_url}/api/product-add`, product, { withCredentials: true })
+            const { data } = await axios.post(`${base_url}/api/product-add`, product, config)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error.response.data)
@@ -16,9 +25,18 @@ export const add_product = createAsyncThunk(
 
 export const update_product = createAsyncThunk(
     'product/updateProduct',
-    async (product, { rejectWithValue, fulfillWithValue }) => {
+    async (product, { rejectWithValue,getState, fulfillWithValue }) => {
+
+        const {token} = getState().auth
+
+        const config ={
+            headers:{
+                'Authorization': `Bearer ${token}`,
+            }
+        }
+
         try {
-            const { data } = await axios.post(`${base_url}/api/product-update`, product, { withCredentials: true })
+            const { data } = await axios.post(`${base_url}/api/product-update`, product, config)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error.response.data)
@@ -28,13 +46,22 @@ export const update_product = createAsyncThunk(
 
 export const product_image_update = createAsyncThunk(
     'product/product_image_update',
-    async ({ oldImage, newImage, productId }, { rejectWithValue, fulfillWithValue }) => {
+    async ({ oldImage, newImage, productId }, { rejectWithValue,getState, fulfillWithValue }) => {
+
+        const {token} = getState().auth
+
+        const config ={
+            headers:{
+                'Authorization': `Bearer ${token}`,
+            }
+        }
+
         try {
             const formData = new FormData()
             formData.append('oldImage', oldImage)
             formData.append('newImage', newImage)
             formData.append('productId', productId)
-            const { data } = await axios.post(`${base_url}/api/product-image-update`, formData, { withCredentials: true })
+            const { data } = await axios.post(`${base_url}/api/product-image-update`, formData, config)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error.response.data)
@@ -44,9 +71,18 @@ export const product_image_update = createAsyncThunk(
 
 export const get_products = createAsyncThunk(
     'product/get_products',
-    async ({ parPage, page, searchValue }, { rejectWithValue, fulfillWithValue }) => {
+    async ({ parPage, page, searchValue }, { rejectWithValue,getState, fulfillWithValue }) => {
+
+        const {token} = getState().auth
+
+        const config ={
+            headers:{
+                'Authorization': `Bearer ${token}`,
+            }
+        }
+
         try {
-            const { data } = await axios.get(`${base_url}/api/products-get?page=${page}&&searchValue=${searchValue}&&parPage=${parPage}`, { withCredentials: true })
+            const { data } = await axios.get(`${base_url}/api/products-get?page=${page}&&searchValue=${searchValue}&&parPage=${parPage}`, config)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error.response.data)
@@ -56,9 +92,18 @@ export const get_products = createAsyncThunk(
 
 export const get_product = createAsyncThunk(
     'product/get_product',
-    async (productId, { rejectWithValue, fulfillWithValue }) => {
+    async (productId, { rejectWithValue,getState, fulfillWithValue }) => {
+
+        const {token} = getState().auth
+
+        const config ={
+            headers:{
+                'Authorization': `Bearer ${token}`,
+            }
+        }
+
         try {
-            const { data } = await axios.get(`${base_url}/api/product-get/${productId}`, { withCredentials: true })
+            const { data } = await axios.get(`${base_url}/api/product-get/${productId}`, config)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error.response.data)
