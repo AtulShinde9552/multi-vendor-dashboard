@@ -4,21 +4,13 @@ import { base_url } from '../../utils/config'
 
 export const categoryAdd = createAsyncThunk(
     'category/categoryAdd',
-    async ({ name, image }, { rejectWithValue, fulfillWithValue, getState}) => {
-
-        const {token} = getState().auth
-
-        const config ={
-            headers:{
-                'Authorization': `Bearer ${token}`,
-            }
-        }
-
+    async ({ name, image }, { rejectWithValue, fulfillWithValue }) => {
+        
         try {
             const formData = new FormData()
             formData.append('name', name)
             formData.append('image', image)
-            const { data } = await axios.post(`${base_url}/api/category-add`, formData, config)
+            const { data } = await axios.post(`${base_url}/api/category-add`, formData, { withCredentials: true })
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error.response.data)
@@ -28,18 +20,9 @@ export const categoryAdd = createAsyncThunk(
 
 export const get_category = createAsyncThunk(
     'category/get_category',
-    async ({ parPage, page, searchValue }, { rejectWithValue, fulfillWithValue, getState}) => {
-
-        const {token} = getState().auth
-
-        const config ={
-            headers:{
-                'Authorization': `Bearer ${token}`,
-            }
-        }
-
+    async ({ parPage, page, searchValue }, { rejectWithValue, fulfillWithValue }) => {
         try {
-            const { data } = await axios.get(`${base_url}/api/category-get?page=${page}&&searchValue=${searchValue}&&parPage=${parPage}`, config)
+            const { data } = await axios.get(`${base_url}/api/category-get?page=${page}&&searchValue=${searchValue}&&parPage=${parPage}`, { withCredentials: true })
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error.response.data)
