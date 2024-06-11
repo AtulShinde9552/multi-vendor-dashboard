@@ -112,6 +112,15 @@ export const get_deactive_sellers = createAsyncThunk(
 export const create_stripe_connect_account = createAsyncThunk(
     'seller/create_stripe_connect_account',
     async () => {
+
+        const {token} = getState().auth
+
+        const config ={
+            headers:{
+                'Authorization': `Bearer ${token}`,
+            }
+        }
+
         try {
             const { data: { url } } = await axios.get(`${base_url}/api/payment/create-stripe-connect-account`, config)
             window.location.href = url
@@ -135,7 +144,7 @@ export const active_stripe_connect_account = createAsyncThunk(
         }
 
         try {
-            const { data } = await axios.put(`${base_url}/api/payment/active-stripe-connect-account/${activeCode}`, {}, config)
+            const { data } = await axios.put(`${base_url}/api/payment/active-stripe-connect-account/${activeCode}`,config)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error.response.data)
