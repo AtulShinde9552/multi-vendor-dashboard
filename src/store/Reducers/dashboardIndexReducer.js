@@ -5,11 +5,10 @@ import { base_url } from '../../utils/config'
 export const get_seller_dashboard_index_data = createAsyncThunk(
     'dashboardIndex/get_seller_dashboard_index_data',
     async (_, { rejectWithValue, fulfillWithValue, getState }) => {
+        const { token } = getState().auth
 
-        const {token} = getState().auth
-
-        const config ={
-            headers:{
+        const config = {
+            headers: {
                 'Authorization': `Bearer ${token}`,
             }
         }
@@ -26,12 +25,11 @@ export const get_seller_dashboard_index_data = createAsyncThunk(
 
 export const get_admin_dashboard_index_data = createAsyncThunk(
     'dashboardIndex/get_admin_dashboard_index_data',
-    async (_, { rejectWithValue, fulfillWithValue, getState}) => {
+    async (_, { rejectWithValue, fulfillWithValue, getState }) => {
+        const { token } = getState().auth
 
-        const {token} = getState().auth
-
-        const config ={
-            headers:{
+        const config = {
+            headers: {
                 'Authorization': `Bearer ${token}`,
             }
         }
@@ -46,7 +44,47 @@ export const get_admin_dashboard_index_data = createAsyncThunk(
     }
 )
 
+export const get_area_manager_dashboard_index_data = createAsyncThunk(
+    'dashboardIndex/get_area_manager_dashboard_index_data',
+    async (_, { rejectWithValue, fulfillWithValue, getState }) => {
+        const { token } = getState().auth
 
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        }
+
+        try {
+            const { data } = await axios.get(`${base_url}/api/area-manager/get-dashboard-index-data`, config)
+            console.log(data)
+            return fulfillWithValue(data)
+        } catch (error) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
+
+export const get_regional_admin_dashboard_index_data = createAsyncThunk(
+    'dashboardIndex/get_regional_admin_dashboard_index_data',
+    async (_, { rejectWithValue, fulfillWithValue, getState }) => {
+        const { token } = getState().auth;
+
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        };
+
+        try {
+            const { data } = await axios.get(`${base_url}/api/regional-admin/get-dashboard-index-data`, config);
+            console.log(data);
+            return fulfillWithValue(data);
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+);
 
 export const dashboardIndexReducer = createSlice({
     name: 'dashboardIndex',
@@ -56,6 +94,8 @@ export const dashboardIndexReducer = createSlice({
         totalProduct: 0,
         totalPendingOrder: 0,
         totalSeller: 0,
+        totalRegionalAdmins: 0, 
+        totalAreaManagers: 0,
         recentOrders: [],
         recentMessage: []
     },
@@ -66,7 +106,7 @@ export const dashboardIndexReducer = createSlice({
         }
     },
     extraReducers: {
-        [get_seller_dashboard_index_data.fulfilled] : (state,{payload})=>{
+        [get_seller_dashboard_index_data.fulfilled]: (state, { payload }) => {
             state.totalSale = payload.totalSale
             state.totalOrder = payload.totalOrder
             state.totalProduct = payload.totalProduct
@@ -74,16 +114,36 @@ export const dashboardIndexReducer = createSlice({
             state.recentOrders = payload.recentOrders
             state.recentMessage = payload.messages
         },
-        [get_admin_dashboard_index_data.fulfilled] : (state,{payload})=>{
+        [get_admin_dashboard_index_data.fulfilled]: (state, { payload }) => {
             state.totalSale = payload.totalSale
             state.totalOrder = payload.totalOrder
             state.totalProduct = payload.totalProduct
             state.totalSeller = payload.totalSeller
             state.recentOrders = payload.recentOrders
             state.recentMessage = payload.messages
+        },
+        [get_area_manager_dashboard_index_data.fulfilled]: (state, { payload }) => {
+            state.totalSale = payload.totalSale
+            state.totalOrder = payload.totalOrder
+            state.totalProduct = payload.totalProduct
+            state.totalPendingOrder = payload.totalPendingOrder
+            state.totalAreaManagers = payload.totalAreaManagers
+            state.recentOrders = payload.recentOrders
+            state.recentMessage = payload.messages
+        },
+        [get_regional_admin_dashboard_index_data.fulfilled]: (state, { payload }) => {
+            state.totalSale = payload.totalSale;
+            state.totalOrder = payload.totalOrder;
+            state.totalProduct = payload.totalProduct;
+            state.totalPendingOrder = payload.totalPendingOrder;
+            state.totalRegionalAdmins = payload.totalRegionalAdmins;
+            state.recentOrders = payload.recentOrders;
+            state.recentMessage = payload.messages;
         }
+        
     }
-
+    
 })
+
 export const { messageClear } = dashboardIndexReducer.actions
 export default dashboardIndexReducer.reducer

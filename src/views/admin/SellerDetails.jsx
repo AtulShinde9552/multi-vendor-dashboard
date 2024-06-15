@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { useSelector, useDispatch } from 'react-redux'
-import { get_seller, seller_status_update, messageClear } from '../../store/Reducers/sellerReducer'
+import { get_seller, update_seller_data, messageClear } from '../../store/Reducers/sellerReducer'
 const SellerDetails = () => {
     const dispatch = useDispatch()
     const { seller, successMessage } = useSelector(state => state.seller)
@@ -13,7 +13,7 @@ const SellerDetails = () => {
     const [status, setStatus] = useState('')
     const submit = (e) => {
         e.preventDefault()
-        dispatch(seller_status_update({
+        dispatch(update_seller_data({
             sellerId,
             status
         }))

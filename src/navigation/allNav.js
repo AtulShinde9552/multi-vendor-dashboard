@@ -132,4 +132,86 @@ export const allNav = [
         role: 'seller',
         path: '/seller/dashboard/profile'
     },
+
+    {
+        id: 18,
+        title: 'Profile',
+        icon: <FiUsers />,
+        role: 'seller',
+        path: '/seller/dashboard/profile'
+    },
+
+    {
+        id: 19,
+        title: 'Dashboard',
+        icon: <AiFillDashboard />,
+        role: 'areamanager',
+        path: '/areamanager/dashboard'
+    },
+    // {
+    //     id: 20,
+    //     title: 'Sellers Request',
+    //     icon: <BiLoaderCircle />,
+    //     role: 'areamanager',
+    //     path: '/areamanager/dashboard/sellers-request'
+    // },
+
+    {
+        id: 20,
+        title: 'Category',
+        icon: <BiCategory />,
+        role: 'areamanager',
+        path: '/areamanager/dashboard/category'
+    },
+
+    {
+        id: 21,
+        title: 'Add Sellers',
+        icon: <FiUsers />,
+        role: 'areamanager',
+        path: '/areamanager/dashboard/add-seller'
+    },
+    {
+        id: 22,
+        title: 'Add ShopeInfo',
+        icon: <FiUsers />,
+        role: 'areamanager',
+        path: '/areamanager/dashboard/addshopinfo'
+    },
+
+    {
+        id: 23,
+        title: 'Deactive Sellers',
+        icon: <FiUsers />,
+        role: 'areamanager',
+        path: '/areamanager/dashboard/deactive-sellers'
+    },
+    {
+        id: 24,
+        title: 'Sellers',
+        icon: <FiUsers />,
+        role: 'areamanager',
+        path: '/areamanager/dashboard/sellers'
+    },
+    {
+        id: 25,
+        title: 'Dashboard',
+        icon: <FiUsers />,
+        role: 'regionaladmin',
+        path: '/regionaladmin/dashboard'
+    },
+    {
+        id: 26,
+        title: 'Add Areamanager',
+        icon: <FiUsers />,
+        role: 'regionaladmin',
+        path: '/regionaladmin/dashboard'
+    },
+    {
+        id: 27,
+        title: 'AreaManagers',
+        icon: <FiUsers />,
+        role: 'regionaladmin',
+        path: '/regionaladmin/dashboard/areamanager'
+    },
 ]

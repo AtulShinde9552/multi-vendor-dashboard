@@ -2,7 +2,7 @@ import axios from 'axios'
 const local = 'http://localhost:5000'
 const production = 'https://multi-vendor-backend-lywh.onrender.com'
 
-let api_url = ''
+let api_url = local
 let node = 'pro'
 
 if (node === 'pro') {

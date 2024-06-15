@@ -3,7 +3,7 @@ const production = 'https://multi-vendor-backend-lywh.onrender.com'
 
 
 let base_url = ''
-let mode = 'pro'
+let mode = 'dev'
 
 if (mode === 'pro') {
     base_url = production

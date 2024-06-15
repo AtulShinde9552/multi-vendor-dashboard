@@ -16,6 +16,19 @@ export const admin_login = createAsyncThunk(
     }
 )
 
+export const area_manager_login = createAsyncThunk(
+    'auth/area_manager_login',
+    async (info, { rejectWithValue, fulfillWithValue }) => {
+        try {
+            const { data } = await axios.post(`${base_url}/api/area_manager_login`, info)
+            localStorage.setItem('accessToken', data.token)
+            return fulfillWithValue(data)
+        } catch (error) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
+
 export const seller_login = createAsyncThunk(
     'auth/seller_login',
     async (info, { rejectWithValue, fulfillWithValue }) => {
@@ -28,14 +41,15 @@ export const seller_login = createAsyncThunk(
         }
     }
 )
+
 export const logout = createAsyncThunk(
     'auth/logout',
-    async ({ navigate, role }, { rejectWithValue, fulfillWithValue, getState}) => {
+    async ({ navigate, role }, { rejectWithValue, fulfillWithValue, getState }) => {
 
-        const {token} = getState().auth
+        const { token } = getState().auth
 
-        const config ={
-            headers:{
+        const config = {
+            headers: {
                 'Authorization': `Bearer ${token}`,
             }
         }
@@ -56,14 +70,12 @@ export const logout = createAsyncThunk(
     }
 )
 
-
 export const seller_register = createAsyncThunk(
     'auth/seller_register',
     async (info, { rejectWithValue, fulfillWithValue }) => {
         try {
             console.log(info)
             const { data } = await axios.post(`${base_url}/api/seller-register`, info)
-            localStorage.setItem('accessToken', data.token)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error.response.data)
@@ -71,15 +83,14 @@ export const seller_register = createAsyncThunk(
     }
 )
 
-
 export const profile_image_upload = createAsyncThunk(
     'auth/profile_image_upload',
-    async (image, { rejectWithValue, fulfillWithValue, getState}) => {
+    async (image, { rejectWithValue, fulfillWithValue, getState }) => {
 
-        const {token} = getState().auth
+        const { token } = getState().auth
 
-        const config ={
-            headers:{
+        const config = {
+            headers: {
                 'Authorization': `Bearer ${token}`,
             }
         }
@@ -95,12 +106,12 @@ export const profile_image_upload = createAsyncThunk(
 
 export const profile_info_add = createAsyncThunk(
     'auth/profile_info_add',
-    async (info, { rejectWithValue, fulfillWithValue, getState}) => {
+    async (info, { rejectWithValue, fulfillWithValue, getState }) => {
 
-        const {token} = getState().auth
+        const { token } = getState().auth
 
-        const config ={
-            headers:{
+        const config = {
+            headers: {
                 'Authorization': `Bearer ${token}`,
             }
         }
@@ -114,23 +125,45 @@ export const profile_info_add = createAsyncThunk(
     }
 )
 
-
-
-
 export const get_user_info = createAsyncThunk(
     'auth/get_user_info',
     async (_, { rejectWithValue, fulfillWithValue, getState }) => {
 
-        const {token} = getState().auth
+        const { token } = getState().auth
 
-        const config ={
-            headers:{
+        const config = {
+            headers: {
                 'Authorization': `Bearer ${token}`,
             }
         }
         console.log(config);
         try {
             const { data } = await axios.get(`${base_url}/api/get-user`, config)
+            return fulfillWithValue(data)
+        } catch (error) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
+
+export const regional_admin_login = createAsyncThunk(
+    'auth/regional_admin_login',
+    async (info, { rejectWithValue, fulfillWithValue }) => {
+        try {
+            const { data } = await axios.post(`${base_url}/api/regional_admin_login`, info)
+            localStorage.setItem('accessToken', data.token)
+            return fulfillWithValue(data)
+        } catch (error) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
+
+export const regional_admin_register = createAsyncThunk(
+    'auth/regional_admin_register',
+    async (info, { rejectWithValue, fulfillWithValue }) => {
+        try {
+            const { data } = await axios.post(`${base_url}/api/regional_admin_register`, info)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error.response.data)
@@ -152,7 +185,6 @@ const returnRole = (token) => {
         return ''
     }
 }
-
 
 export const authReducer = createSlice({
     name: 'auth',
@@ -179,6 +211,19 @@ export const authReducer = createSlice({
             state.errorMessage = payload.error
         },
         [admin_login.fulfilled]: (state, { payload }) => {
+            state.loader = false
+            state.successMessage = payload.message
+            state.token = payload.token
+            state.role = returnRole(payload.token)
+        },
+        [area_manager_login.pending]: (state, _) => {
+            state.loader = true
+        },
+        [area_manager_login.rejected]: (state, { payload }) => {
+            state.loader = false
+            state.errorMessage = payload.error
+        },
+        [area_manager_login.fulfilled]: (state, { payload }) => {
             state.loader = false
             state.successMessage = payload.message
             state.token = payload.token
@@ -212,8 +257,13 @@ export const authReducer = createSlice({
         },
         [get_user_info.fulfilled]: (state, { payload }) => {
             state.loader = false
-            state.userInfo = payload.userInfo
-            state.role = payload.userInfo.role
+            if (payload && payload.userInfo) {
+                state.userInfo = payload.userInfo
+                state.role = payload.userInfo.role
+            } else {
+                state.userInfo = ''
+                state.role = ''
+            }
         },
         [profile_image_upload.pending]: (state, _) => {
             state.loader = true
@@ -231,8 +281,33 @@ export const authReducer = createSlice({
             state.userInfo = payload.userInfo
             state.successMessage = payload.message
         },
+        [regional_admin_login.pending]: (state, _) => {
+            state.loader = true
+        },
+        [regional_admin_login.rejected]: (state, { payload }) => {
+            state.loader = false
+            state.errorMessage = payload.error
+        },
+        [regional_admin_login.fulfilled]: (state, { payload }) => {
+            state.loader = false
+            state.successMessage = payload.message
+            state.token = payload.token
+            state.role = returnRole(payload.token)
+        },
+        [regional_admin_register.pending]: (state, _) => {
+            state.loader = true
+        },
+        [regional_admin_register.rejected]: (state, { payload }) => {
+            state.loader = false
+            state.errorMessage = payload.error
+        },
+        [regional_admin_register.fulfilled]: (state, { payload }) => {
+            state.loader = false
+            state.successMessage = payload.message
+            state.token = payload.token
+            state.role = returnRole(payload.token)
+        },
     }
-
 })
 export const { messageClear } = authReducer.actions
 export default authReducer.reducer

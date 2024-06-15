@@ -5,6 +5,8 @@ const Home = () => {
     const { role } = useSelector(state => state.auth)
     if (role === 'seller') return <Navigate to='/seller/dashboard' replace />
     else if (role === 'admin') return <Navigate to='/admin/dashboard' replace />
+    else if (role === 'regionaladmin') return <Navigate to='/regionaladmin/dashboard' replace />
+    else if (role === 'areamanager') return <Navigate to='/areamanager/dashboard' replace />
     else return <Navigate to='/login' replace />
 }
 

@@ -3,34 +3,47 @@ import { Outlet } from 'react-router-dom'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import { socket } from '../utils/utils'
-import { useSelector,useDispatch } from 'react-redux'
-import {updateCustomer,updateSellers,activeStatus_update} from '../store/Reducers/chatReducer'
+import { useSelector, useDispatch } from 'react-redux'
+import { updateCustomer, updateSellers, activeStatus_update } from '../store/Reducers/chatReducer'
 
 const MainLayout = () => {
-
   const dispatch = useDispatch()
   const { userInfo } = useSelector(state => state.auth)
   const [showSidebar, setShowSidebar] = useState(false)
 
   useEffect(() => {
-    if (userInfo && userInfo.role === 'seller') {
-      socket.emit('add_seller', userInfo._id, userInfo)
-    } else {
-      socket.emit('add_admin', userInfo)
+    if (userInfo) {
+      switch(userInfo.role) {
+        case 'seller':
+          socket.emit('add_seller', userInfo._id, userInfo)
+          break
+        case 'admin':
+          socket.emit('add_admin', userInfo)
+          break
+        case 'areamanager':
+          socket.emit('add_area_manager', userInfo._id, userInfo)
+          break
+        default:
+          break
+      }
     }
   }, [userInfo])
 
-  useEffect(()=>{
-    socket.on('activeCustomer',(customers)=>{
+  useEffect(() => {
+    socket.on('activeCustomer', (customers) => {
       dispatch(updateCustomer(customers))
     })
-    socket.on('activeSeller',(sellers)=>{
+    socket.on('activeSeller', (sellers) => {
       dispatch(updateSellers(sellers))
     })
-    socket.on('activeAdmin',(data)=>{
+    socket.on('activeAdmin', (data) => {
       dispatch(activeStatus_update(data))
     })
-  },[])
+    socket.on('activeAreaManager', (data) => {
+      dispatch(activeStatus_update(data))
+    })
+  }, [dispatch])
+
   return (
     <div className='bg-[#161d31] w-full min-h-screen'>
       <Header showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
