@@ -15,11 +15,11 @@ export const adminRoutes = [
         element: <AdminDashboard />,
         role: 'admin'
     },
-    {
-        path: 'admin/dashboard/orders',
-        element: <Orders />,
-        role: 'admin'
-    },
+    // {
+    //     path: 'admin/dashboard/orders',
+    //     element: <Orders />,
+    //     role: 'admin'
+    // },
     {
         path: 'admin/dashboard/category',
         element: <Category />,
@@ -30,39 +30,39 @@ export const adminRoutes = [
         element: <Sellers />,
         role: 'admin'
     },
-    {
-        path: 'admin/dashboard/payment-request',
-        element: <PaymentRequest />,
-        role: 'admin'
-    },
-    {
-        path: 'admin/dashboard/deactive-sellers',
-        element: <DeactiveSellers />,
-        role: 'admin'
-    },
-    {
-        path: 'admin/dashboard/sellers-request',
-        element: <SellerRequest />,
-        role: 'admin'
-    },
+    // {
+    //     path: 'admin/dashboard/payment-request',
+    //     element: <PaymentRequest />,
+    //     role: 'admin'
+    // },
+    // {
+    //     path: 'admin/dashboard/deactive-sellers',
+    //     element: <DeactiveSellers />,
+    //     role: 'admin'
+    // },
+    // {
+    //     path: 'admin/dashboard/sellers-request',
+    //     element: <SellerRequest />,
+    //     role: 'admin'
+    // },
     {
         path: 'admin/dashboard/seller/details/:sellerId',
         element: <SellerDetails />,
         role: 'admin'
     },
-    {
-        path: 'admin/dashboard/chat-sellers',
-        element: <ChatSeller />,
-        role: 'admin'
-    },
-    {
-        path: 'admin/dashboard/chat-sellers/:sellerId',
-        element: <ChatSeller />,
-        role: 'admin'
-    },
-    {
-        path: 'admin/dashboard/order/details/:orderId',
-        element: <OrderDetails />,
-        role: 'admin'
-    }
+    // {
+    //     path: 'admin/dashboard/chat-sellers',
+    //     element: <ChatSeller />,
+    //     role: 'admin'
+    // },
+    // {
+    //     path: 'admin/dashboard/chat-sellers/:sellerId',
+    //     element: <ChatSeller />,
+    //     role: 'admin'
+    // },
+    // {
+    //     path: 'admin/dashboard/order/details/:orderId',
+    //     element: <OrderDetails />,
+    //     role: 'admin'
+    // }
 ]

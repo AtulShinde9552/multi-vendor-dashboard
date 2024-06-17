@@ -10,7 +10,7 @@ import { profile_image_upload } from '../../store/Reducers/authReducer';
 import { get_seller, messageClear, update_seller_data } from '../../store/Reducers/sellerReducer';
 
 const Profile = () => {
-    const [isEditing, setIsEditing] = useState(true);
+    const [isEditing, setIsEditing] = useState(false);
 
     const dispatch = useDispatch();
     const { seller, successMessage } = useSelector(state => state.seller);
@@ -43,14 +43,14 @@ const Profile = () => {
     useEffect(() => {
         if (seller?.shopInfo) {
             setState({
-                shopName: seller.shopInfo.shopName || '',
-                division: seller.shopInfo.division || '',
-                district: seller.shopInfo.district || '',
-                address: seller.shopInfo.address || '',
-                bankName: seller.shopInfo.bankName || '',
-                bankAccount: seller.shopInfo.bankAccount || '',
-                ifscCode: seller.shopInfo.ifscCode || '',
-                pinCode: seller.shopInfo.pinCode || ''
+                shopName: seller.shopName || '',
+                division: seller.division || '',
+                district: seller.district || '',
+                address: seller.address || '',
+                bankName: seller.bankName || '',
+                bankAccount: seller.bankAccount || '',
+                ifscCode: seller.ifscCode || '',
+                pinCode: seller.pinCode || ''
             });
         }
     }, [seller]);

@@ -12,13 +12,13 @@ export const allNav = [
         role: 'admin',
         path: '/admin/dashboard'
     },
-    {
-        id: 2,
-        title: 'Orders',
-        icon: <AiOutlineShoppingCart />,
-        role: 'admin',
-        path: '/admin/dashboard/orders'
-    },
+    // {
+    //     id: 2,
+    //     title: 'Orders',
+    //     icon: <AiOutlineShoppingCart />,
+    //     role: 'admin',
+    //     path: '/admin/dashboard/orders'
+    // },
     {
         id: 3,
         title: 'Category',
@@ -33,34 +33,34 @@ export const allNav = [
         role: 'admin',
         path: '/admin/dashboard/sellers'
     },
-    {
-        id: 5,
-        title: 'Payment request',
-        icon: <BsCurrencyDollar />,
-        role: 'admin',
-        path: '/admin/dashboard/payment-request'
-    },
-    {
-        id: 6,
-        title: 'Deactive Sellers',
-        icon: <FiUsers />,
-        role: 'admin',
-        path: '/admin/dashboard/deactive-sellers'
-    },
-    {
-        id: 7,
-        title: 'Sellers Request',
-        icon: <BiLoaderCircle />,
-        role: 'admin',
-        path: '/admin/dashboard/sellers-request'
-    },
-    {
-        id: 8,
-        title: 'Chat Seller',
-        icon: <CiChat1 />,
-        role: 'admin',
-        path: '/admin/dashboard/chat-sellers'
-    },
+    // {
+    //     id: 5,
+    //     title: 'Payment request',
+    //     icon: <BsCurrencyDollar />,
+    //     role: 'admin',
+    //     path: '/admin/dashboard/payment-request'
+    // },
+    // {
+    //     id: 6,
+    //     title: 'Deactive Sellers',
+    //     icon: <FiUsers />,
+    //     role: 'admin',
+    //     path: '/admin/dashboard/deactive-sellers'
+    // },
+    // {
+    //     id: 7,
+    //     title: 'Sellers Request',
+    //     icon: <BiLoaderCircle />,
+    //     role: 'admin',
+    //     path: '/admin/dashboard/sellers-request'
+    // },
+    // {
+    //     id: 8,
+    //     title: 'Chat Seller',
+    //     icon: <CiChat1 />,
+    //     role: 'admin',
+    //     path: '/admin/dashboard/chat-sellers'
+    // },
     {
         id: 9,
         title: 'Dashboard',
