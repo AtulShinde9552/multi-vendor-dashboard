@@ -75,7 +75,7 @@ export const update_seller_data = createAsyncThunk(
         }
 
         try {
-            const { data } = await axios.put(`${base_url}/api/update_seller_data`, info, config)
+            const { data } = await axios.post(`${base_url}/api/update_seller_data`, info, config)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error.response.data)

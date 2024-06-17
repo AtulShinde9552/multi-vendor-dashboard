@@ -32,7 +32,7 @@ const Register = () => {
         if (successMessage) {
             toast.success(successMessage)
             dispatch(messageClear())
-            navigate('/')
+            navigate('/regionaladmin/login')
         }
         if (errorMessage) {
             toast.error(errorMessage)

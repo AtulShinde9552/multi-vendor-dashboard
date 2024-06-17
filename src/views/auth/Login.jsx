@@ -37,9 +37,80 @@ const Login = () => {
             dispatch(messageClear())
         }
     }, [successMessage, errorMessage])
+
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleDropdown = () => {
+      setIsOpen(!isOpen);
+    };
+
     return (
         <div className='min-w-screen min-h-screen bg-[#161d31] flex justify-center items-center'>
             <div className='w-[350px] text-[#d0d2d6] p-2'>
+            <div className='mb-3'>
+      <button
+        id="dropdownDefaultButton"
+        data-dropdown-toggle="dropdown"
+        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        type="button"
+        onClick={toggleDropdown}
+      >
+        Login Options
+        <svg
+          className="w-2.5 h-2.5 ms-3"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 10 6"
+        >
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="m1 1 4 4 4-4"
+          />
+        </svg>
+      </button>
+
+      {isOpen && (
+        <div
+          id="dropdown"
+          className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+        >
+          <ul
+            className="py-2 text-sm text-gray-700 dark:text-gray-200"
+            aria-labelledby="dropdownDefaultButton"
+          >
+            <li>
+              <Link
+                to="/admin/login"
+                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                Admin Login
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/regionaladmin/login"
+                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                RegionalAdmin Login
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/areamanager/login"
+                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                AreaManager Login
+              </Link>
+            </li>
+          </ul>
+        </div>
+      )}
+    </div>
                 <div className='bg-[#283046] p-4 rounded-md'>
                     <h2 className='text-xl mb-3'>Welcome to Shopp.MY Grocery</h2>
                     <p className='text-sm mb-3'>Please signin to your account and start your bussiness</p>
@@ -69,7 +140,7 @@ const Login = () => {
                         </div>
                         <div className='flex justify-center items-center gap-3'>
                             <div className='w-[35px] h-[35px] flex rounded-md bg-orange-700 shadow-lg hover:shadow-orange-700/50 justify-center cursor-pointer items-center overflow-hidden'>
-                                <span><AiOutlineGooglePlus /></span>
+                                {/* <span><LinkiOutlineGooglePlus /></span> */}
                             </div>
                             <div className='w-[35px] h-[35px] flex rounded-md bg-indigo-700 shadow-lg hover:shadow-indigo-700/50 justify-center cursor-pointer items-center overflow-hidden'>
                                 <span><FiFacebook /></span>
@@ -78,7 +149,7 @@ const Login = () => {
                                 <span><CiTwitter /></span>
                             </div>
                             <div className='w-[35px] h-[35px] flex rounded-md bg-purple-700 shadow-lg hover:shadow-purple-700/50 justify-center cursor-pointer items-center overflow-hidden'>
-                                <span><AiOutlineGithub /></span>
+                                {/* <span><LinkiOutlineGithub /></span> */}
                             </div>
                         </div>
                     </form>

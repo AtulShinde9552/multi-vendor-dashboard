@@ -33,7 +33,10 @@ const Profile = () => {
         if (successMessage) {
             toast.success(successMessage)
             dispatch(messageClear())
-           navigate('/areamanager/dashboard/sellers')
+            setTimeout(() => {
+                navigate('/areamanager/dashboard/sellers');
+                window.location.reload();
+            }, 2000); // Adjust the delay as needed
         }
         if (errorMessage) {
             toast.error(errorMessage)
