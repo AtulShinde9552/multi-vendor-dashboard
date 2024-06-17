@@ -155,13 +155,13 @@ export const allNav = [
         role: 'areamanager',
         path: '/areamanager/dashboard/add-seller'
     },
-    {
-        id: 22,
-        title: 'Add ShopeInfo',
-        icon: <FiUsers />,
-        role: 'areamanager',
-        path: '/areamanager/dashboard/addshopinfo'
-    },
+    // {
+    //     id: 22,
+    //     title: 'Add ShopeInfo',
+    //     icon: <FiUsers />,
+    //     role: 'areamanager',
+    //     path: '/areamanager/dashboard/addshopinfo'
+    // },
 
     {
         id: 23,
