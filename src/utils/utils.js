@@ -7,5 +7,5 @@ export const overrideStyle = {
     alignItems: "center"
 }
 
-export const socket = io('https://multi-vendor-backend-lywh.onrender.com')
+export const socket = io("https://multi-vendor-backend-lywh.onrender.com")
 // export const socket = io('http://localhost:5000')

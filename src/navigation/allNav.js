@@ -134,28 +134,12 @@ export const allNav = [
     },
 
     {
-        id: 18,
-        title: 'Profile',
-        icon: <FiUsers />,
-        role: 'seller',
-        path: '/seller/dashboard/profile'
-    },
-
-    {
         id: 19,
         title: 'Dashboard',
         icon: <AiFillDashboard />,
         role: 'areamanager',
         path: '/areamanager/dashboard'
     },
-    // {
-    //     id: 20,
-    //     title: 'Sellers Request',
-    //     icon: <BiLoaderCircle />,
-    //     role: 'areamanager',
-    //     path: '/areamanager/dashboard/sellers-request'
-    // },
-
     {
         id: 20,
         title: 'Category',
