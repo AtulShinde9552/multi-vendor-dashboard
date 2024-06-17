@@ -189,13 +189,13 @@ export const allNav = [
         title: 'Add Areamanager',
         icon: <FiUsers />,
         role: 'regionaladmin',
-        path: '/regionaladmin/dashboard'
+        path: '/regionaladmin/dashboard/addzonemanager'
     },
     {
         id: 27,
         title: 'AreaManagers',
         icon: <FiUsers />,
         role: 'regionaladmin',
-        path: '/regionaladmin/dashboard/areamanager'
+        path: '/regionaladmin/dashboard/areamanagers'
     },
 ]

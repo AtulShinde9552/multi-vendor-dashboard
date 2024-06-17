@@ -29,6 +29,20 @@ export const area_manager_login = createAsyncThunk(
     }
 )
 
+export const area_manager_register = createAsyncThunk(
+    'auth/area_manager_register',
+    async (info, { rejectWithValue, fulfillWithValue }) => {
+        try {
+            console.log(info)
+            const { data } = await axios.post(`${base_url}/api/area_manager_register`, info)
+            return fulfillWithValue(data)
+        } catch (error) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
+
+
 export const seller_login = createAsyncThunk(
     'auth/seller_login',
     async (info, { rejectWithValue, fulfillWithValue }) => {
