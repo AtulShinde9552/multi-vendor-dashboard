@@ -96,21 +96,21 @@ export const allNav = [
         role: 'seller',
         path: '/seller/dashboard/category'
     },
-    {
-        id: 11,
-        title: 'All Banner',
-        icon: <RiProductHuntLine />,
-        role: 'seller',
-        path: '/seller/dashboard/banners'
-    },
+    // {
+    //     id: 11,
+    //     title: 'All Banner',
+    //     icon: <RiProductHuntLine />,
+    //     role: 'seller',
+    //     path: '/seller/dashboard/banners'
+    // },
 
-    {
-        id: 12,
-        title: 'Discount Product',
-        icon: <RiProductHuntLine />,
-        role: 'seller',
-        path: '/seller/dashboard/discount-products'
-    },
+    // {
+    //     id: 12,
+    //     title: 'Discount Product',
+    //     icon: <RiProductHuntLine />,
+    //     role: 'seller',
+    //     path: '/seller/dashboard/discount-products'
+    // },
     {
         id: 13,
         title: 'Orders',

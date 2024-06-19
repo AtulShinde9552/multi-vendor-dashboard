@@ -59,12 +59,12 @@ export const sellerRoutes = [
         role: 'seller'
     },
 
-    {
-        path: '/seller/dashboard/discount-products',
-        element: <DiscountProducts />,
-        role: 'seller',
-        status: 'active'
-    },
+    // {
+    //     path: '/seller/dashboard/discount-products',
+    //     element: <DiscountProducts />,
+    //     role: 'seller',
+    //     status: 'active'
+    // },
     {
         path: '/seller/dashboard/orders',
         element: <Orders />,
@@ -107,16 +107,16 @@ export const sellerRoutes = [
         role: 'seller',
         visibility: ['active', 'deactive', 'pending']
     },
-    {
-        path: '/seller/dashboard/add-banner/:productId',
-        element: <AddBanner />,
-        role: 'seller',
-        status: 'active'
-    },
-    {
-        path: '/seller/dashboard/banners',
-        element: <Banners />,
-        role: 'seller',
-        status: 'active'
-    }
+    // {
+    //     path: '/seller/dashboard/add-banner/:productId',
+    //     element: <AddBanner />,
+    //     role: 'seller',
+    //     status: 'active'
+    // },
+    // {
+    //     path: '/seller/dashboard/banners',
+    //     element: <Banners />,
+    //     role: 'seller',
+    //     status: 'active'
+    // }
 ]
