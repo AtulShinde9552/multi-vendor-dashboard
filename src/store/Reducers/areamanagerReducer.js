@@ -1,53 +1,54 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
-import { base_url } from '../../utils/config'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { base_url } from '../../utils/config';
 
 export const get_areamanager = createAsyncThunk(
     'areamanager/get_areamanager',
-    async (_, { rejectWithValue, getState, fulfillWithValue }) => {
-        const { token } = getState().auth
+    async (_, { rejectWithValue, getState }) => {
+        const { token } = getState().auth;
         const config = {
             headers: {
                 'Authorization': `Bearer ${token}`,
             }
-        }
+        };
 
         try {
-            const { data } = await axios.get(`${base_url}/api/get_areamanager`, config)
-            return fulfillWithValue(data)
+            const response = await axios.get(`${base_url}/api/get_areamanager`, config);
+            return response.data; 
+           
         } catch (error) {
-            return rejectWithValue(error.response.data)
+            return rejectWithValue(error.response.data);
         }
     }
-)
+);
 
-export const areamanagerReducer = createSlice({
+const areamanagerSlice = createSlice({
     name: 'areamanager',
     initialState: {
-        successMessage: '',
-        errorMessage: '',
+        areaManagers: [],
         loader: false,
-        areaManagers: [], // Ensure areaManagers is an empty array initially
+        errorMessage: '',
     },
     reducers: {
         messageClear: (state) => {
-            state.errorMessage = ""
-            state.successMessage = ""
+            state.errorMessage = '';
         }
     },
-    extraReducers: {
-        [get_areamanager.fulfilled]: (state, { payload }) => {
-            state.areaManagers = payload.areaManagers
-            state.loader = false; // Move loader to false here
-        },
-        [get_areamanager.pending]: (state) => {
-            state.loader = true;
-        },
-        [get_areamanager.rejected]: (state, { payload }) => {
-            state.errorMessage = payload;
-            state.loader = false;
-        }
+    extraReducers: (builder) => {
+        builder
+            .addCase(get_areamanager.pending, (state) => {
+                state.loader = true;
+            })
+            .addCase(get_areamanager.fulfilled, (state, { payload }) => {
+                state.areaManagers = payload; // Ensure payload is correctly set
+                state.loader = false;
+            })
+            .addCase(get_areamanager.rejected, (state, { payload }) => {
+                state.errorMessage = payload;
+                state.loader = false;
+            });
     }
-})
-export const { messageClear } = areamanagerReducer.actions
-export default areamanagerReducer.reducer
+});
+
+export const { messageClear } = areamanagerSlice.actions;
+export default areamanagerSlice.reducer;

@@ -11,11 +11,11 @@ import { get_seller, messageClear, update_seller_data } from '../../store/Reduce
 
 const Profile = () => {
     const [isEditing, setIsEditing] = useState(false);
-
     const dispatch = useDispatch();
     const { seller, successMessage } = useSelector(state => state.seller);
     const { sellerId } = useParams();
     const { userInfo, loader } = useSelector(state => state.auth);
+
     const [state, setState] = useState({
         shopName: '',
         division: '',
@@ -41,7 +41,7 @@ const Profile = () => {
     }, [sellerId, dispatch]);
 
     useEffect(() => {
-        if (seller?.shopInfo) {
+        if (seller) {
             setState({
                 shopName: seller.shopName || '',
                 division: seller.division || '',
@@ -68,8 +68,9 @@ const Profile = () => {
             toast.success(successMessage);
             dispatch(messageClear());
             setIsEditing(false);
+            dispatch(get_seller(sellerId)); // Fetch the updated seller data
         }
-    }, [successMessage, dispatch]);
+    }, [successMessage, dispatch, sellerId]);
 
     const add = (e) => {
         e.preventDefault();
@@ -83,7 +84,6 @@ const Profile = () => {
             ifscCode: state.ifscCode,
             pinCode: state.pinCode
         };
-        console.log("Submitting state:", shopInfo);
         dispatch(update_seller_data({ shopInfo, sellerId }));
     };
 
@@ -125,7 +125,7 @@ const Profile = () => {
                         </div>
                         <div className='px-0 md:px-5 py-2'>
                             <div className='flex justify-between text-sm flex-col gap-2 p-4 bg-slate-800 rounded-md relative'>
-                                <span className='p-[6px] bg-yellow-500 rounded hover:shadow-lg hover:shadow-yellow-500/50 absolute right-2 top-2 cursor-pointer'>
+                                <span className='p-[6px] bg-yellow-500 rounded hover:shadow-lg hover:shadow-yellow-500/50 absolute right-2 top-2 cursor-pointer' onClick={() => setIsEditing(!isEditing)}>
                                     <FaEdit />
                                 </span>
                                 <div className='flex gap-2'>
@@ -149,80 +149,34 @@ const Profile = () => {
                         <div className='px-0 md:px-5 py-2'>
                             {isEditing ? (
                                 <form onSubmit={add}>
-                                    <div className='flex flex-col w-full gap-1 mb-3'>
-                                        <label htmlFor="Shop">Shop Name</label>
-                                        <input value={state.shopName} onChange={inputHandle} className='px-4 py-2 focus:border-indigo-500 outline-none bg-[#283046] border border-slate-700 rounded-md text-[#d0d2d6]' type="text" placeholder='shop name' name='shopName' id='Shop' />
-                                    </div>
-                                    <div className='flex flex-col w-full gap-1'>
-                                        <label htmlFor="div">Division</label>
-                                        <input value={state.division} onChange={inputHandle} className='px-4 py-2 focus:border-indigo-500 outline-none bg-[#283046] border border-slate-700 rounded-md text-[#d0d2d6]' type="text" placeholder='division' name='division' id='div' />
-                                    </div>
-                                    <div className='flex flex-col w-full gap-1 mb-3'>
-                                        <label htmlFor="district">District</label>
-                                        <input value={state.district} onChange={inputHandle} className='px-4 py-2 focus:border-indigo-500 outline-none bg-[#283046] border border-slate-700 rounded-md text-[#d0d2d6]' type="text" placeholder='district' name='district' id='district' />
-                                    </div>
-                                    <div className='flex flex-col w-full gap-1 mb-3'>
-                                        <label htmlFor="sub">Address</label>
-                                        <input value={state.address} onChange={inputHandle} className='px-4 py-2 focus:border-indigo-500 outline-none bg-[#283046] border border-slate-700 rounded-md text-[#d0d2d6]' type="text" placeholder='address' name='address' id='add' />
-                                    </div>
-                                    <div className='flex flex-col w-full gap-1 mb-3'>
-                                        <label htmlFor="sub">PinCode</label>
-                                        <input value={state.pinCode} onChange={inputHandle} className='px-4 py-2 focus:border-indigo-500 outline-none bg-[#283046] border border-slate-700 rounded-md text-[#d0d2d6]' type="text" placeholder='pinCode' name='pinCode' id='add' />
-                                    </div>
-                                    <div className='flex flex-col w-full gap-1 mb-3'>
-                                        <label htmlFor="sub">Bank Name</label>
-                                        <input value={state.bankName} onChange={inputHandle} className='px-4 py-2 focus:border-indigo-500 outline-none bg-[#283046] border border-slate-700 rounded-md text-[#d0d2d6]' type="text" placeholder='bankName' name='bankName' id='add' />
-                                    </div>
-                                    <div className='flex flex-col w-full gap-1 mb-3'>
-                                        <label htmlFor="sub">Bank Account</label>
-                                        <input value={state.bankAccount} onChange={inputHandle} className='px-4 py-2 focus:border-indigo-500 outline-none bg-[#283046] border border-slate-700 rounded-md text-[#d0d2d6]' type="text" placeholder='bankAccount' name='bankAccount' id='add' />
-                                    </div>
-                                    <div className='flex flex-col w-full gap-1 mb-3'>
-                                        <label htmlFor="sub">IFSC Code</label>
-                                        <input value={state.ifscCode} onChange={inputHandle} className='px-4 py-2 focus:border-indigo-500 outline-none bg-[#283046] border border-slate-700 rounded-md text-[#d0d2d6]' type="text" placeholder='ifscCode' name='ifscCode' id='add' />
-                                    </div>
+                                    {Object.keys(state).map((key) => (
+                                        <div className='flex flex-col w-full gap-1 mb-3' key={key}>
+                                            <label htmlFor={key}>{key.charAt(0).toUpperCase() + key.slice(1)}</label>
+                                            <input value={state[key]} onChange={inputHandle} className='px-4 py-2 focus:border-indigo-500 outline-none bg-[#283046] border border-slate-700 rounded-md text-[#d0d2d6]' type="text" placeholder={key} name={key} id={key} />
+                                        </div>
+                                    ))}
                                     <button disabled={loader} className='bg-blue-500 w-[190px] hover:shadow-blue-500/20 hover:shadow-lg text-white rounded-md px-7 py-2 mb-3'>
                                         {loader ? <PropagateLoader color='#fff' cssOverride={overrideStyle} /> : 'Update Info'}
                                     </button>
                                 </form>
                             ) : (
                                 <div className='flex flex-col gap-3'>
-                                    <div className='flex gap-2'>
-                                        <span>Shop Name:</span>
-                                        <span>{state.shopName}</span>
-                                    </div>
-                                    <div className='flex gap-2'>
-                                        <span>Division:</span>
-                                        <span>{state.division}</span>
-                                    </div>
-                                    <div className='flex gap-2'>
-                                        <span>District:</span>
-                                        <span>{state.district}</span>
-                                    </div>
-                                    <div className='flex gap-2'>
-                                        <span>Address:</span>
-                                        <span>{state.address}</span>
-                                    </div>
-                                    <div className='flex gap-2'>
-                                        <span>PinCode:</span>
-                                        <span>{state.pinCode}</span>
-                                    </div>
-                                    <div className='flex gap-2'>
-                                        <span>Bank Name:</span>
-                                        <span>{state.bankName}</span>
-                                    </div>
-                                    <div className='flex gap-2'>
-                                        <span>Bank Account:</span>
-                                        <span>{state.bankAccount}</span>
-                                    </div>
-                                    <div className='flex gap-2'>
-                                        <span>IFSC Code:</span>
-                                        <span>{state.ifscCode}</span>
-                                    </div>
-                                    <button onClick={() => setIsEditing(true)} className='bg-yellow-500 hover:shadow-yellow-500/50 hover:shadow-lg text-white rounded-md px-7 py-2 mt-3'>
-                                        Edit Info
-                                    </button>
-                                </div>
+                                {Object.keys(seller).map((key) => {
+                                    // Only render if the key is one of the expected fields
+                                    if (['shopName', 'division', 'district', 'address', 'bankName', 'bankAccount', 'ifscCode', 'pinCode'].includes(key)) {
+                                        return (
+                                            <div className='flex gap-2' key={key}>
+                                                <span>{key.charAt(0).toUpperCase() + key.slice(1)}:</span>
+                                                <span>{seller[key]}</span>
+                                            </div>
+                                        );
+                                    }
+                                    return null;
+                                })}
+                                <button onClick={() => setIsEditing(true)} className='bg-yellow-500 hover:shadow-yellow-500/50 hover:shadow-lg text-white rounded-md px-7 py-2 mt-3'>
+                                    Edit Info
+                                </button>
+                            </div>
                             )}
                         </div>
                     </div>

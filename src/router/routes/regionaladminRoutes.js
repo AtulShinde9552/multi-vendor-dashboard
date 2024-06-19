@@ -21,7 +21,7 @@ export const regionaladminRoutes = [
         role: 'regionaladmin'
     },
     {
-        path: 'regionaladmin/dashboard/areamanagers',
+        path: "regionaladmin/dashboard/areamanagers",
         element: <AreaManagers />,
         role: 'regionaladmin'
     },

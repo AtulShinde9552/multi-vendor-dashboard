@@ -196,6 +196,6 @@ export const allNav = [
         title: 'AreaManagers',
         icon: <FiUsers />,
         role: 'regionaladmin',
-        path: '/regionaladmin/dashboard/areamanagers'
+        path: "/regionaladmin/dashboard/areamanagers"
     },
 ]
