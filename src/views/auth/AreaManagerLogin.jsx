@@ -38,7 +38,7 @@ const AreaManagerLogin = () => {
         if (successMessage) {
             toast.success(successMessage)
             dispatch(messageClear())
-            navigate('/')
+            navigate('/areamanager/dashboard/sellers')
         }
     }, [errorMessage, successMessage])
 

@@ -3,6 +3,7 @@ import categoryReducer from './Reducers/categoryReducer'
 import productReducer from './Reducers/productReducer'
 import sellerReducer from './Reducers/sellerReducer'
 import areamanagerReducer from './Reducers/areamanagerReducer'
+import regionaladminReducer from './Reducers/regionaladminReducer'
 import chatReducer from './Reducers/chatReducer'
 import OrderReducer from './Reducers/OrderReducer'
 import PaymentReducer from './Reducers/PaymentReducer'
@@ -14,6 +15,7 @@ const rootReducer = {
     product: productReducer,
     seller: sellerReducer,
     areamanager: areamanagerReducer,
+    regionaladmin: regionaladminReducer,
     chat: chatReducer,
     order: OrderReducer,
     payment: PaymentReducer,

@@ -13,25 +13,32 @@ export const allNav = [
         path: '/admin/dashboard'
     },
     // {
-    //     id: 2,
-    //     title: 'Orders',
-    //     icon: <AiOutlineShoppingCart />,
+    //     id: 3,
+    //     title: 'Category',
+    //     icon: <BiCategory />,
     //     role: 'admin',
-    //     path: '/admin/dashboard/orders'
+    //     path: '/admin/dashboard/category'
     // },
     {
-        id: 3,
-        title: 'Category',
-        icon: <BiCategory />,
-        role: 'admin',
-        path: '/admin/dashboard/category'
-    },
-    {
-        id: 4,
-        title: 'Sellers',
+        id: 2,
+        title: 'AddRegional Admins',
         icon: <FiUsers />,
         role: 'admin',
-        path: '/admin/dashboard/sellers'
+        path: '/admin/dashboard/addregionaladmin'
+    },
+    {
+        id: 3,
+        title: 'Regional Admins',
+        icon: <FiUsers />,
+        role: 'admin',
+        path: '/admin/dashboard/regionaladmins'
+    },
+        {
+        id: 4,
+        title: 'Orders',
+        icon: <AiOutlineShoppingCart />,
+        role: 'admin',
+        path: '/admin/dashboard/orders'
     },
     // {
     //     id: 5,
@@ -81,6 +88,13 @@ export const allNav = [
         icon: <RiProductHuntLine />,
         role: 'seller',
         path: '/seller/dashboard/products'
+    },
+        {
+        id: 3,
+        title: 'Category',
+        icon: <BiCategory />,
+        role: 'seller',
+        path: '/seller/dashboard/category'
     },
     {
         id: 11,
@@ -133,20 +147,20 @@ export const allNav = [
         path: '/seller/dashboard/profile'
     },
 
-    {
-        id: 19,
-        title: 'Dashboard',
-        icon: <AiFillDashboard />,
-        role: 'areamanager',
-        path: '/areamanager/dashboard'
-    },
-    {
-        id: 20,
-        title: 'Category',
-        icon: <BiCategory />,
-        role: 'areamanager',
-        path: '/areamanager/dashboard/category'
-    },
+    // {
+    //     id: 19,
+    //     title: 'Dashboard',
+    //     icon: <AiFillDashboard />,
+    //     role: 'areamanager',
+    //     path: '/areamanager/dashboard'
+    // },
+    // {
+    //     id: 20,
+    //     title: 'Category',
+    //     icon: <BiCategory />,
+    //     role: 'areamanager',
+    //     path: '/areamanager/dashboard/category'
+    // },
 
     {
         id: 21,
@@ -163,13 +177,13 @@ export const allNav = [
     //     path: '/areamanager/dashboard/addshopinfo'
     // },
 
-    {
-        id: 23,
-        title: 'Deactive Sellers',
-        icon: <FiUsers />,
-        role: 'areamanager',
-        path: '/areamanager/dashboard/deactive-sellers'
-    },
+    // {
+    //     id: 23,
+    //     title: 'Deactive Sellers',
+    //     icon: <FiUsers />,
+    //     role: 'areamanager',
+    //     path: '/areamanager/dashboard/deactive-sellers'
+    // },
     {
         id: 24,
         title: 'Sellers',

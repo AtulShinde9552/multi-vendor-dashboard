@@ -36,7 +36,7 @@ const Profile = () => {
             setTimeout(() => {
                 navigate('/regionaladmin/dashboard/areamanagers');
                 window.location.reload();
-            }, 2000); // Adjust the delay as needed
+            }, 2000);
         }
         if (errorMessage) {
             toast.error(errorMessage)

@@ -5,7 +5,8 @@ const SellerRequest = lazy(() => import("../../views/admin/SellerRequest"))
 const AdminDashboard = lazy(() => import("../../views/admin/AdminDashboard"))
 const Orders = lazy(() => import("../../views/admin/Orders"))
 const Category = lazy(() => import("../../views/admin/Category"))
-const Sellers = lazy(() => import("../../views/admin/Sellers"))
+const RegionalaAdmin = lazy(() => import("../../views/admin/RegionalaAdmin"))
+const AddRegionalAdmin = lazy(() => import("../../views/admin/AddRegionalAdmin"))
 const PaymentRequest = lazy(() => import("../../views/admin/PaymentRequest"))
 const ChatSeller = lazy(() => import("../../views/admin/ChatSeller"))
 const OrderDetails = lazy(() => import("../../views/admin/OrderDetails"))
@@ -15,19 +16,25 @@ export const adminRoutes = [
         element: <AdminDashboard />,
         role: 'admin'
     },
+
     // {
-    //     path: 'admin/dashboard/orders',
-    //     element: <Orders />,
+    //     path: 'admin/dashboard/category',
+    //     element: <Category />,
     //     role: 'admin'
     // },
     {
-        path: 'admin/dashboard/category',
-        element: <Category />,
+        path: 'admin/dashboard/addregionaladmin',
+        element: <AddRegionalAdmin />,
         role: 'admin'
     },
     {
-        path: 'admin/dashboard/sellers',
-        element: <Sellers />,
+        path: 'admin/dashboard/regionaladmins',
+        element: <RegionalaAdmin />,
+        role: 'admin'
+    },
+    {
+        path: 'admin/dashboard/orders',
+        element: <Orders />,
         role: 'admin'
     },
     // {

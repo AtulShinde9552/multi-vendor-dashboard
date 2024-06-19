@@ -131,7 +131,7 @@ const RegionalAdminDashboard = () => {
                 <div className='w-full lg:w-5/12 lg:pl-4 mt-6 lg:mt-0'>
                     <div className='w-full bg-[#283046] p-4 rounded-md text-[#d0d2d6]'>
                         <div className='flex justify-between items-center'>
-                            <h2 className='font-semibold text-lg text-[#d0d2d6] pb-3'>Recent seller messages</h2>
+                            <h2 className='font-semibold text-lg text-[#d0d2d6] pb-3'>Recent AreaManager messages</h2>
                             <Link className='font-semibold text-sm text-[#d0d2d6]'>View All</Link>
                         </div>
                         <div className='flex flex-col gap-2 pt-6 text-[#d0d2d6]'>
