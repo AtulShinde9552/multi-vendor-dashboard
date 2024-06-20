@@ -12,13 +12,13 @@ export const allNav = [
         role: 'admin',
         path: '/admin/dashboard'
     },
-    // {
-    //     id: 3,
-    //     title: 'Category',
-    //     icon: <BiCategory />,
-    //     role: 'admin',
-    //     path: '/admin/dashboard/category'
-    // },
+    {
+        id: 3,
+        title: 'Category',
+        icon: <BiCategory />,
+        role: 'admin',
+        path: '/admin/dashboard/category'
+    },
     {
         id: 2,
         title: 'AddRegional Admins',
@@ -89,13 +89,13 @@ export const allNav = [
         role: 'seller',
         path: '/seller/dashboard/products'
     },
-        {
-        id: 3,
-        title: 'Category',
-        icon: <BiCategory />,
-        role: 'seller',
-        path: '/seller/dashboard/category'
-    },
+    //     {
+    //     id: 3,
+    //     title: 'Category',
+    //     icon: <BiCategory />,
+    //     role: 'seller',
+    //     path: '/seller/dashboard/category'
+    // },
     // {
     //     id: 11,
     //     title: 'All Banner',
@@ -147,13 +147,13 @@ export const allNav = [
         path: '/seller/dashboard/profile'
     },
 
-    // {
-    //     id: 19,
-    //     title: 'Dashboard',
-    //     icon: <AiFillDashboard />,
-    //     role: 'areamanager',
-    //     path: '/areamanager/dashboard'
-    // },
+    {
+        id: 19,
+        title: 'Dashboard',
+        icon: <AiFillDashboard />,
+        role: 'areamanager',
+        path: '/areamanager/dashboard'
+    },
     // {
     //     id: 20,
     //     title: 'Category',
@@ -191,13 +191,13 @@ export const allNav = [
         role: 'areamanager',
         path: '/areamanager/dashboard/sellers'
     },
-    // {
-    //     id: 25,
-    //     title: 'Dashboard',
-    //     icon: <FiUsers />,
-    //     role: 'regionaladmin',
-    //     path: '/regionaladmin/dashboard'
-    // },
+    {
+        id: 25,
+        title: 'Dashboard',
+        icon: <FiUsers />,
+        role: 'regionaladmin',
+        path: '/regionaladmin/dashboard'
+    },
     {
         id: 26,
         title: 'Add Areamanager',

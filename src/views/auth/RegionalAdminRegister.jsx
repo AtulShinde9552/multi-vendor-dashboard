@@ -16,6 +16,8 @@ const Register = () => {
     const [state, setSatate] = useState({
         name: '',
         email: "",
+        region: "",
+        regionCode:'' ,
         password: ''
     })
     const inputHandle = (e) => {
@@ -32,7 +34,7 @@ const Register = () => {
         if (successMessage) {
             toast.success(successMessage)
             dispatch(messageClear())
-            navigate('/regionaladmin/login')
+            navigate('/')
         }
         if (errorMessage) {
             toast.error(errorMessage)
@@ -46,6 +48,14 @@ const Register = () => {
                     <h2 className='text-xl mb-3'>Welcome to Shopp.MY Grocery</h2>
                     <p className='text-sm mb-3'>Please register to your account and start your bussiness</p>
                     <form onSubmit={submit}>
+                        <div className='flex flex-col w-full gap-1 mb-3'>
+                            <label htmlFor="region">Name</label>
+                            <input onChange={inputHandle} value={state.region} className='px-3 py-2 outline-none border border-slate-700 bg-transparent rounded-md text-[#d0d2d6] focus:border-indigo-500 overflow-hidden' type="text" name='region' placeholder='region name' id='region' required />
+                        </div>
+                        <div className='flex flex-col w-full gap-1 mb-3'>
+                            <label htmlFor="regionCode">Region Code</label>
+                            <input onChange={inputHandle} value={state.regionCode} className='px-3 py-2 outline-none border border-slate-700 bg-transparent rounded-md text-[#d0d2d6] focus:border-indigo-500 overflow-hidden' type="text" name='regionCode' placeholder='region Code' id='regionCode' required />
+                        </div>
                         <div className='flex flex-col w-full gap-1 mb-3'>
                             <label htmlFor="name">Name</label>
                             <input onChange={inputHandle} value={state.name} className='px-3 py-2 outline-none border border-slate-700 bg-transparent rounded-md text-[#d0d2d6] focus:border-indigo-500 overflow-hidden' type="text" name='name' placeholder='name' id='name' required />

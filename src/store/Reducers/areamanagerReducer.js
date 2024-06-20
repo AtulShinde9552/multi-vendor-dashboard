@@ -26,6 +26,7 @@ const areamanagerSlice = createSlice({
     name: 'areamanager',
     initialState: {
         areaManagers: [],
+        total: 0, // Add a total field to the initial state
         loader: false,
         errorMessage: '',
     },
@@ -40,7 +41,8 @@ const areamanagerSlice = createSlice({
                 state.loader = true;
             })
             .addCase(get_areamanager.fulfilled, (state, { payload }) => {
-                state.areaManagers = payload; // Ensure payload is correctly set
+                state.areaManagers = payload.data; // Ensure payload structure is correct
+                state.total = payload.total; // Set the total from the payload
                 state.loader = false;
             })
             .addCase(get_areamanager.rejected, (state, { payload }) => {

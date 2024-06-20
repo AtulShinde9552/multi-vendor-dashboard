@@ -10,8 +10,10 @@ import { messageClear, area_manager_register } from '../../store/Reducers/authRe
 const Profile = () => {
     const navigate = useNavigate()
     const [register, setRegister] = useState({
-        email: '',
         name: '',
+        areaname: "",
+        areacode: "",
+        email: '',
         password: ''
     });
     const dispatch = useDispatch();
@@ -55,18 +57,6 @@ const Profile = () => {
                             <h1 className='text-[#d0d2d6] text-lg mb-3 font-semibold'>Register</h1>
                             <form onSubmit={registerHandle}>
                                 <div className='flex flex-col w-full gap-1 mb-3'>
-                                    <label htmlFor="reg_email">Email</label>
-                                    <input 
-                                        value={register.email} 
-                                        onChange={inputHandle} 
-                                        className='px-4 py-2 focus:border-indigo-500 outline-none bg-[#283046] border border-slate-700 rounded-md text-[#d0d2d6]' 
-                                        type="email" 
-                                        placeholder='email' 
-                                        name='email' 
-                                        id='reg_email' 
-                                    />
-                                </div>
-                                <div className='flex flex-col w-full gap-1 mb-3'>
                                     <label htmlFor="reg_name">Name</label>
                                     <input 
                                         value={register.name} 
@@ -76,6 +66,42 @@ const Profile = () => {
                                         placeholder='name' 
                                         name='name' 
                                         id='reg_name' 
+                                    />
+                                </div>
+                                <div className='flex flex-col w-full gap-1 mb-3'>
+                                    <label htmlFor="reg_name">Area Name</label>
+                                    <input 
+                                        value={register.areaname} 
+                                        onChange={inputHandle} 
+                                        className='px-4 py-2 focus:border-indigo-500 outline-none bg-[#283046] border border-slate-700 rounded-md text-[#d0d2d6]' 
+                                        type="text" 
+                                        placeholder='AreaName' 
+                                        name='areaname' 
+                                        id='areaname' 
+                                    />
+                                </div>
+                                <div className='flex flex-col w-full gap-1 mb-3'>
+                                    <label htmlFor="reg_name">Area Code</label>
+                                    <input 
+                                        value={register.areacode} 
+                                        onChange={inputHandle} 
+                                        className='px-4 py-2 focus:border-indigo-500 outline-none bg-[#283046] border border-slate-700 rounded-md text-[#d0d2d6]' 
+                                        type="Number" 
+                                        placeholder='AreaCode' 
+                                        name='areacode' 
+                                        id='areacode' 
+                                    />
+                                </div>
+                                <div className='flex flex-col w-full gap-1 mb-3'>
+                                    <label htmlFor="reg_email">Email</label>
+                                    <input 
+                                        value={register.email} 
+                                        onChange={inputHandle} 
+                                        className='px-4 py-2 focus:border-indigo-500 outline-none bg-[#283046] border border-slate-700 rounded-md text-[#d0d2d6]' 
+                                        type="email" 
+                                        placeholder='email' 
+                                        name='email' 
+                                        id='reg_email' 
                                     />
                                 </div>
                                 <div className='flex flex-col w-full gap-1 mb-3'>

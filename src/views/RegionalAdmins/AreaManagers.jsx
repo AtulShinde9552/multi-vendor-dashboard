@@ -37,6 +37,8 @@ const Areamanager = () => {
               <tr>
                 <th className="py-3 px-4">No</th>
                 <th className="py-3 px-4">Name</th>
+                <th className="py-3 px-4">Area Name</th>
+                <th className="py-3 px-4">Area Code</th>
                 <th className="py-3 px-4">Email</th>
                 <th className="py-3 px-4">Role</th>
                 <th className="py-3 px-4">Actions</th>
@@ -51,6 +53,11 @@ const Areamanager = () => {
                     </td>
                     <td className="py-1 px-4 font-medium whitespace-nowrap">
                       {d.name}
+                    </td>
+                    <td className="py-1 px-4 font-medium whitespace-nowrap">
+                      {d.areaname}
+                    </td><td className="py-1 px-4 font-medium whitespace-nowrap">
+                      {d.areacode}
                     </td>
                     <td className="py-1 px-4 font-medium whitespace-nowrap">
                       {d.email}

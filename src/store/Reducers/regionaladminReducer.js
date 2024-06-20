@@ -26,6 +26,7 @@ const regionaladminSlice = createSlice({
     name: 'regionaladmin',
     initialState: {
         regionaladmins: [],
+        total: 0,
         loader: false,
         errorMessage: '',
     },
@@ -40,7 +41,8 @@ const regionaladminSlice = createSlice({
                 state.loader = true;
             })
             .addCase(get_regionaladmin.fulfilled, (state, { payload }) => {
-                state.regionaladmins = payload; // Ensure payload is correctly set
+                state.regionaladmins = payload.data;
+                state.total = payload.total;
                 state.loader = false;
             })
             .addCase(get_regionaladmin.rejected, (state, { payload }) => {

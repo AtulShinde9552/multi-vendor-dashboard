@@ -18,7 +18,7 @@ const AdminDashboard = () => {
     const { totalSale,
         totalOrder,
         totalProduct,
-        totalSeller,
+        totalRegionalAdmins,
         recentOrders,
         recentMessage } = useSelector(state => state.dashboardIndex)
 
@@ -113,8 +113,8 @@ const AdminDashboard = () => {
                 </div>
                 <div className='flex justify-between items-center p-5 bg-[#283046] rounded-md gap-3'>
                     <div className='flex flex-col justify-start items-start text-[#d0d2d6]'>
-                        <h2 className='text-3xl font-bold'>{totalSeller}</h2>
-                        <span className='text-md font-medium'>Sellers</span>
+                        <h2 className='text-3xl font-bold'>{totalRegionalAdmins}</h2>
+                        <span className='text-md font-medium'>Regional Admins</span>
                     </div>
                     <div className='w-[46px] h-[47px] rounded-full bg-[#00cfe81f] flex justify-center items-center text-xl'>
                         <FaUsers className='text-[#00cfe8] shadow-lg' />

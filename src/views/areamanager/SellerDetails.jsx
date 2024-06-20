@@ -12,8 +12,8 @@ import { get_seller, messageClear, update_seller_data } from '../../store/Reduce
 const Profile = () => {
     const [isEditing, setIsEditing] = useState(false);
     const dispatch = useDispatch();
-    const { seller, successMessage } = useSelector(state => state.seller);
     const { sellerId } = useParams();
+    const { seller, successMessage, shopInfo } = useSelector(state => state.seller);
     const { userInfo, loader } = useSelector(state => state.auth);
 
     const [state, setState] = useState({
@@ -161,22 +161,16 @@ const Profile = () => {
                                 </form>
                             ) : (
                                 <div className='flex flex-col gap-3'>
-                                {Object.keys(seller).map((key) => {
-                                    // Only render if the key is one of the expected fields
-                                    if (['shopName', 'division', 'district', 'address', 'bankName', 'bankAccount', 'ifscCode', 'pinCode'].includes(key)) {
-                                        return (
-                                            <div className='flex gap-2' key={key}>
-                                                <span>{key.charAt(0).toUpperCase() + key.slice(1)}:</span>
-                                                <span>{seller[key]}</span>
-                                            </div>
-                                        );
-                                    }
-                                    return null;
-                                })}
-                                <button onClick={() => setIsEditing(true)} className='bg-yellow-500 hover:shadow-yellow-500/50 hover:shadow-lg text-white rounded-md px-7 py-2 mt-3'>
-                                    Edit Info
-                                </button>
-                            </div>
+                                    {Object.keys(state).map((key) => (
+                                        <div className='flex gap-2' key={key}>
+                                            <span>{key.charAt(0).toUpperCase() + key.slice(1)}:</span>
+                                            <span>{state[key]}</span>
+                                        </div>
+                                    ))}
+                                    <button onClick={() => setIsEditing(true)} className='bg-yellow-500 hover:shadow-yellow-500/50 hover:shadow-lg text-white rounded-md px-7 py-2 mt-3'>
+                                        Edit Info
+                                    </button>
+                                </div>
                             )}
                         </div>
                     </div>

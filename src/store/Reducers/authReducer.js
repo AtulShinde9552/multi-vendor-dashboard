@@ -243,6 +243,19 @@ export const authReducer = createSlice({
             state.token = payload.token
             state.role = returnRole(payload.token)
         },
+        [area_manager_register.pending]: (state, _) => {
+            state.loader = true
+        },
+        [area_manager_register.rejected]: (state, { payload }) => {
+            state.loader = false
+            state.errorMessage = payload.error
+        },
+        [area_manager_register.fulfilled]: (state, { payload }) => {
+            state.loader = false
+            state.successMessage = payload.message
+            state.token = payload.token
+            state.role = returnRole(payload.token)
+        },
         [seller_login.pending]: (state, _) => {
             state.loader = true
         },

@@ -56,7 +56,7 @@ export const get_area_manager_dashboard_index_data = createAsyncThunk(
         }
 
         try {
-            const { data } = await axios.get(`${base_url}/api/area-manager/get-dashboard-index-data`, config)
+            const { data } = await axios.get(`${base_url}/api/areamanager/get-dashboard-index-data`, config)
             console.log(data)
             return fulfillWithValue(data)
         } catch (error) {
@@ -65,7 +65,7 @@ export const get_area_manager_dashboard_index_data = createAsyncThunk(
     }
 )
 
-export const get_regional_admin_dashboard_index_data = createAsyncThunk(
+export const get_regional_admin_dashboard_data = createAsyncThunk(
     'dashboardIndex/get_regional_admin_dashboard_index_data',
     async (_, { rejectWithValue, fulfillWithValue, getState }) => {
         const { token } = getState().auth;
@@ -77,7 +77,7 @@ export const get_regional_admin_dashboard_index_data = createAsyncThunk(
         };
 
         try {
-            const { data } = await axios.get(`${base_url}/api/regional-admin/get-dashboard-index-data`, config);
+            const { data } = await axios.get(`${base_url}/api/regionaladmin/get_regional_admin_dashboard_index_data`, config);
             console.log(data);
             return fulfillWithValue(data);
         } catch (error) {
@@ -95,7 +95,7 @@ export const dashboardIndexReducer = createSlice({
         totalPendingOrder: 0,
         totalSeller: 0,
         totalRegionalAdmins: 0, 
-        totalAreaManagers: 0,
+        totalareamanager: 0,
         recentOrders: [],
         recentMessage: []
     },
@@ -118,7 +118,7 @@ export const dashboardIndexReducer = createSlice({
             state.totalSale = payload.totalSale
             state.totalOrder = payload.totalOrder
             state.totalProduct = payload.totalProduct
-            state.totalSeller = payload.totalSeller
+            state.totalRegionalAdmins = payload.totalRegionalAdmins
             state.recentOrders = payload.recentOrders
             state.recentMessage = payload.messages
         },
@@ -127,14 +127,15 @@ export const dashboardIndexReducer = createSlice({
             state.totalOrder = payload.totalOrder
             state.totalProduct = payload.totalProduct
             state.totalPendingOrder = payload.totalPendingOrder
-            state.totalAreaManagers = payload.totalAreaManagers
+            state.totalSeller = payload.totalSeller
             state.recentOrders = payload.recentOrders
             state.recentMessage = payload.messages
         },
-        [get_regional_admin_dashboard_index_data.fulfilled]: (state, { payload }) => {
+        [get_regional_admin_dashboard_data.fulfilled]: (state, { payload }) => {
             state.totalSale = payload.totalSale;
             state.totalOrder = payload.totalOrder;
             state.totalProduct = payload.totalProduct;
+            state.totalareamanager = payload.totalareamanager
             state.totalPendingOrder = payload.totalPendingOrder;
             state.totalRegionalAdmins = payload.totalRegionalAdmins;
             state.recentOrders = payload.recentOrders;

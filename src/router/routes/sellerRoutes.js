@@ -53,11 +53,11 @@ export const sellerRoutes = [
         role: 'seller',
         status: 'active'
     },
-    {
-        path: '/seller/dashboard/category',
-        element: <Category />,
-        role: 'seller'
-    },
+    // {
+    //     path: '/seller/dashboard/category',
+    //     element: <Category />,
+    //     role: 'seller'
+    // },
 
     // {
     //     path: '/seller/dashboard/discount-products',

@@ -7,7 +7,7 @@ import { lazy } from 'react'
 // const OrderDetails = lazy(() => import("../../views/admin/OrderDetails"))
 const DeactiveSellers = lazy(() => import("../../views/areamanager/DeactiveSellers"))
 // const SellerRequest = lazy(() => import("../../views/areamanager/SellerRequest"))
-// const AreaManagerDashboard = lazy(() => import("../../views/areamanager/AreaManagerDashboard"))
+const AreaManagerDashboard = lazy(() => import("../../views/areamanager/AreaManagerDashboard"))
 const Sellers = lazy(() => import("../../views/areamanager/Sellers"))
 const SellerDetails = lazy(() => import("../../views/areamanager/SellerDetails"))
 const AddSeller = lazy(() => import("../../views/areamanager/AddSeller"))
@@ -17,11 +17,11 @@ const AddShop = lazy(() => import("../../views/areamanager/AddShopInfo"))
 
 
 export const areamanagerRoutes = [
-    // {
-    //     path: 'areamanager/dashboard',
-    //     element: <AreaManagerDashboard />,
-    //     role: 'areamanager'
-    // },
+    {
+        path: 'areamanager/dashboard',
+        element: <AreaManagerDashboard />,
+        role: 'areamanager'
+    },
 
     {
         path: 'areamanager/dashboard/category',
