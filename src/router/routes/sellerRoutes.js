@@ -77,12 +77,12 @@ export const sellerRoutes = [
         role: 'seller',
         visibility: ['active', 'deactive']
     },
-    {
-        path: '/seller/dashboard/payments',
-        element: <Payments />,
-        role: 'seller',
-        status: 'active'
-    },
+    // {
+    //     path: '/seller/dashboard/payments',
+    //     element: <Payments />,
+    //     role: 'seller',
+    //     status: 'active'
+    // },
     {
         path: '/seller/dashboard/chat-support',
         element: <SellerToAdmin />,

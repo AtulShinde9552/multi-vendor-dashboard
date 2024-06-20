@@ -176,7 +176,7 @@ const SellerDashboard = () => {
                             <tr>
                                 <th scope='col' className='py-3 px-4'>Order Id</th>
                                 <th scope='col' className='py-3 px-4'>Price</th>
-                                <th scope='col' className='py-3 px-4'>Payment Status</th>
+                                {/* <th scope='col' className='py-3 px-4'>Payment Status</th> */}
                                 <th scope='col' className='py-3 px-4'>Order Status</th>
                                 <th scope='col' className='py-3 px-4'>Active</th>
                             </tr>
@@ -189,9 +189,9 @@ const SellerDashboard = () => {
                                     <td scope='row' className='py-3 px-4 font-medium whitespace-nowrap'>
                                         <span>{d.delivery_status}</span>
                                     </td>
-                                    <td scope='row' className='py-3 px-4 font-medium whitespace-nowrap'>
+                                    {/* <td scope='row' className='py-3 px-4 font-medium whitespace-nowrap'>
                                         <span>{d.payment_status}</span>
-                                    </td>
+                                    </td> */}
                                     <td scope='row' className='py-3 px-4 font-medium whitespace-nowrap'>
                                         <Link to={`/seller/dashboard/order/details/${d._id}`}>view</Link>
                                     </td>
