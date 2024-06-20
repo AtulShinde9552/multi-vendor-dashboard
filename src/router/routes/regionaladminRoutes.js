@@ -9,11 +9,11 @@ const AreaManagers = lazy(() => import("../../views/RegionalAdmins/AreaManagers"
 
 
 export const regionaladminRoutes = [
-    {
-        path: 'regionaladmin/dashboard',
-        element: <RegionalAdminDashboard />,
-        role: 'regionaladmin'
-    },
+    // {
+    //     path: 'regionaladmin/dashboard',
+    //     element: <RegionalAdminDashboard />,
+    //     role: 'regionaladmin'
+    // },
 
     {
         path: 'regionaladmin/dashboard/addzonemanager',

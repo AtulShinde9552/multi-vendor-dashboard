@@ -132,13 +132,13 @@ export const allNav = [
         role: 'seller',
         path: '/seller/dashboard/chat-customer'
     },
-    {
-        id: 16,
-        title: 'Chat Support',
-        icon: <CiChat1 />,
-        role: 'seller',
-        path: '/seller/dashboard/chat-support'
-    },
+    // {
+    //     id: 16,
+    //     title: 'Chat Support',
+    //     icon: <CiChat1 />,
+    //     role: 'seller',
+    //     path: '/seller/dashboard/chat-support'
+    // },
     {
         id: 17,
         title: 'Profile',
@@ -191,13 +191,13 @@ export const allNav = [
         role: 'areamanager',
         path: '/areamanager/dashboard/sellers'
     },
-    {
-        id: 25,
-        title: 'Dashboard',
-        icon: <FiUsers />,
-        role: 'regionaladmin',
-        path: '/regionaladmin/dashboard'
-    },
+    // {
+    //     id: 25,
+    //     title: 'Dashboard',
+    //     icon: <FiUsers />,
+    //     role: 'regionaladmin',
+    //     path: '/regionaladmin/dashboard'
+    // },
     {
         id: 26,
         title: 'Add Areamanager',

@@ -39,11 +39,11 @@ export const send_message = createAsyncThunk(
 )
 
 
-export const get_sellers = createAsyncThunk(
-    'chat/get_sellers',
+export const get_regionaladmin = createAsyncThunk(
+    'chat/get_regionaladmin',
     async (_, { rejectWithValue, fulfillWithValue }) => {
         try {
-            const { data } = await axios.get(`${base_url}/api/chat/admin/get-sellers`, { withCredentials: true })
+            const { data } = await axios.get(`${base_url}/api/chat/admin/get_regionaladmin`, { withCredentials: true })
             console.log(data)
             return fulfillWithValue(data)
         } catch (error) {
@@ -53,11 +53,11 @@ export const get_sellers = createAsyncThunk(
 )
 
 
-export const send_message_seller_admin = createAsyncThunk(
-    'chat/send_message_seller_admin',
+export const send_message_regionaladmin_admin = createAsyncThunk(
+    'chat/message-send-regionaladmin-admin',
     async (info, { rejectWithValue, fulfillWithValue }) => {
         try {
-            const { data } = await axios.post(`${base_url}/api/chat/message-send-seller-admin`, info, { withCredentials: true })
+            const { data } = await axios.post(`${base_url}/api/chat/message-send-regionaladmin-admin`, info, { withCredentials: true })
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error.response.data)
@@ -78,11 +78,11 @@ export const get_admin_message = createAsyncThunk(
     }
 )
 
-export const get_seller_message = createAsyncThunk(
-    'chat/get_seller_message',
+export const get_regionaladmin_message = createAsyncThunk(
+    'chat/get_regionaladmin_message',
     async (receverId, { rejectWithValue, fulfillWithValue }) => {
         try {
-            const { data } = await axios.get(`${base_url}/api/chat/get-seller-messages`, { withCredentials: true })
+            const { data } = await axios.get(`${base_url}/api/chat/get-regionaladmin-messages`, { withCredentials: true })
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error.response.data)
@@ -101,14 +101,14 @@ export const chatReducer = createSlice({
         customers: [],
         messages: [],
         activeCustomer: [],
-        activeSellers: [],
+        activeregionaladmin: [],
         messageNotification: [],
         activeAdmin: "",
         friends: [],
-        seller_admin_message: [],
-        currentSeller: {},
+        regionaladmin_admin_message: [],
+        currentRegionaladmin: {},
         currentCustomer: {},
-        sellers: []
+        regionaladmins: []
     },
     reducers: {
         messageClear: (state, _) => {
@@ -122,13 +122,13 @@ export const chatReducer = createSlice({
             state.activeCustomer = payload
         },
         updateSellers: (state, { payload }) => {
-            state.activeSellers = payload
+            state.activeregionaladmin = payload
         },
         updateAdminMessage: (state, { payload }) => {
-            state.seller_admin_message = [...state.seller_admin_message, payload]
+            state.regionaladmin_admin_message = [...state.regionaladmin_admin_message, payload]
         },
         updateSellerMessage: (state, { payload }) => {
-            state.seller_admin_message = [...state.seller_admin_message, payload]
+            state.regionaladmin_admin_message = [...state.regionaladmin_admin_message, payload]
         },
         activeStatus_update: (state, { payload }) => {
             state.activeAdmin = payload.status
@@ -156,22 +156,22 @@ export const chatReducer = createSlice({
             state.messages = [...state.messages, payload.message]
             state.successMessage = ' message send success'
         },
-        [get_sellers.fulfilled]: (state, { payload }) => {
-            state.sellers = payload.sellers
+        [get_regionaladmin.fulfilled]: (state, { payload }) => {
+            state.regionaladmins = payload.regionaladmins
         },
-        [send_message_seller_admin.fulfilled]: (state, { payload }) => {
-            state.seller_admin_message = [...state.seller_admin_message, payload.message]
+        [send_message_regionaladmin_admin.fulfilled]: (state, { payload }) => {
+            state.regionaladmin_admin_message = [...state.regionaladmin_admin_message, payload.message]
             state.successMessage = 'message send success'
         },
         [get_admin_message.fulfilled]: (state, { payload }) => {
-            state.seller_admin_message = payload.messages
-            state.currentSeller = payload.currentSeller
+            state.regionaladmin_admin_message = payload.messages
+            state.currentRegionaladmin = payload.currentRegionaladmin
         },
-        [get_seller_message.fulfilled]: (state, { payload }) => {
-            state.seller_admin_message = payload.messages
+        [get_regionaladmin_message.fulfilled]: (state, { payload }) => {
+            state.regionaladmin_admin_message = payload.messages
         },
     }
 
 })
-export const { messageClear, updateMessage, updateCustomer, updateSellers, updateAdminMessage, updateSellerMessage, activeStatus_update } = chatReducer.actions
+export const { messageClear, updateMessage, updateCustomer, updateRegionaladmin, updateAdminMessage, updateRegionaladminMessage, activeStatus_update } = chatReducer.actions
 export default chatReducer.reducer

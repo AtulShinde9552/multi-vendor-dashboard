@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { send_message_seller_admin, messageClear, get_seller_message, updateAdminMessage } from '../../store/Reducers/chatReducer'
+import { send_message_regionaladmin_admin, messageClear, get_regionaladmin_message, updateAdminMessage } from '../../store/Reducers/chatReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { socket } from '../../utils/utils'
 
@@ -9,14 +9,14 @@ const SellerToAdmin = () => {
 
     const [text, setText] = useState('')
     const dispatch = useDispatch()
-    const { seller_admin_message, successMessage, activeAdmin } = useSelector(state => state.chat)
+    const { send_message_regionaladmin_admin, successMessage, activeAdmin } = useSelector(state => state.chat)
     const { userInfo } = useSelector(state => state.auth)
     useEffect(() => {
-        dispatch(get_seller_message())
+        dispatch(get_regionaladmin_message())
     }, [])
     const send = (e) => {
         e.preventDefault()
-        dispatch(send_message_seller_admin({
+        dispatch(send_message_regionaladmin_admin({
             senderId: userInfo._id,
             receverId: '',
             message: text,
@@ -33,14 +33,14 @@ const SellerToAdmin = () => {
 
     useEffect(() => {
         if (successMessage) {
-            socket.emit('send_message_seller_to_admin', seller_admin_message[seller_admin_message.length - 1])
+            socket.emit('send_message_seller_to_admin', send_message_regionaladmin_admin[send_message_regionaladmin_admin.length - 1])
             dispatch(messageClear())
         }
     }, [successMessage])
 
     useEffect(() => {
         scrollRef.current?.scrollIntoView({ behavior: 'smooth' })
-    }, [seller_admin_message])
+    }, [send_message_regionaladmin_admin])
 
     return (
         <div className='px-2 lg:px-7 py-5'>
@@ -63,7 +63,7 @@ const SellerToAdmin = () => {
                         <div className='py-4'>
                             <div className='bg-slate-800 h-[calc(100vh-290px)] rounded-md p-3 overflow-y-auto'>
                                 {
-                                    seller_admin_message.map((m, i) => {
+                                    send_message_regionaladmin_admin.map((m, i) => {
                                         if (userInfo._id !== m.senderId) {
                                             return (
                                                 <div ref={scrollRef} key={i} className='w-full flex justify-start items-center'>

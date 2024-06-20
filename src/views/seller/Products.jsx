@@ -59,11 +59,11 @@ const Products = () => {
                                         <span>{d.brand}</span>
                                     </td>
                                     <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>
-                                        <span>${d.price}</span>
+                                        <span>₹{d.price}</span>
                                     </td>
                                     <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>
                                         {
-                                            d.discount === 0 ? <span>no discount</span> : <span>${d.discount}%</span>
+                                            d.discount === 0 ? <span>no discount</span> : <span>₹{d.discount}%</span>
                                         }
                                     </td>
                                     <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>
